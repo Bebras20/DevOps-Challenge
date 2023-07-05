@@ -31,23 +31,30 @@ jobs:
         run: docker-compose build
   
   unit_test:
-    needs: infra_build
+#    needs: infra_build
     runs-on: ubuntu-latest
   
     steps:
+    
       - name: Checkout code
         uses: actions/checkout@v2
-  
+      
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
       - name: Install unit testing requirements
         run: pip install "tornado" "redis"
       - name: Import hello module
+      
         run: |
           mkdir -p $HOME/workdir
           cp hello.py  $HOME/workdir/tests
           
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
       - name: Unit Testing
-        run: python -c "from hello import MainHandler; tests/test.py"  
+ 
+        run: python3 -c "from hello import MainHandler; tests/test.py"  
   
 # integration_test:
 #   runs-on: ubuntu-latest
