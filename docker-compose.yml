@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis:
+    image: redis:3.0.1
+    ports:
+      - 6379:6379
+
+  app:
+    build:
+      context: .
+    ports:
+      - 9000:9000
+    depends_on:
+      - redis

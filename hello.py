@@ -1,11 +1,10 @@
+
+import os
+from sys import exit
 import redis
 from redis.exceptions import ConnectionError
 import tornado.ioloop
 import tornado.web
-
-import os
-from sys import exit
-
 try:
     r = redis.Redis(
         host=os.getenv("REDIS_HOST"),
