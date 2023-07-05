@@ -46,7 +46,7 @@ jobs:
           cp hello.py  $HOME/workdir/tests
         
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
-          python tests/test.py
+          python $HOME/workdir/tests/test.py
   
   
 # integration_test:
