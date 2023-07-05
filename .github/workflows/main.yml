@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  Linting:
     runs-on: ubuntu-latest
     name: Checks
     steps:
@@ -31,6 +31,7 @@ jobs:
         run: docker-compose build
   
   unit_test:
+    needs: infra_build
     runs-on: ubuntu-latest
   
     steps:
@@ -42,15 +43,11 @@ jobs:
       - name: Import hello module
         run: |
           mkdir -p $HOME/workdir
-          cp hello.py $HOME/workdir
+          cp hello.py  $HOME/workdir
+          cp tests/test.py  $HOME/workdir
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
-      - name: Debugging Output
-        run: |
-          pwd
-          ls -al
-          cat hello.py
       - name: Unit Testing
-        run: python tests/test.py
+        run: python test.py
   
   
 # integration_test:
