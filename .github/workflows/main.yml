@@ -15,7 +15,7 @@ jobs:
       with:
         python-version: 3.x
     - run: pip install --upgrade pip
-    - run: pip install "black<23" pylint mypy
+    - run: pip install "black<23" pylint mypy types-redis types-tornado
     - run: black hello.py
 
     - run: pylint --disable=all --enable=unused-import $(git ls-files 'hello.py')
