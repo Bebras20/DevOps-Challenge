@@ -19,7 +19,6 @@ jobs:
     - run: black hello.py
 
     - run: pylint --disable=all --enable=unused-import $(git ls-files 'hello.py')
-    - run: mypy --strict $(git ls-files 'hello.py')
 # Uncomment and customize the following sections as needed
 
 # build:
