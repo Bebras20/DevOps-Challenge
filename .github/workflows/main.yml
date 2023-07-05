@@ -1,0 +1,82 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Linting
+        run: docker run --rm -v $PWD:/app -w /app flake8 flake8 .
+
+# Uncomment and customize the following sections as needed
+
+# build:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Building
+#       run: docker-compose build
+# 
+# unit_test:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Unit Testing
+#       run: docker-compose run app <unit_test_command>
+# 
+# integration_test:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Integration Testing
+#       run: docker-compose run app <integration_test_command>
+# 
+# code_coverage:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Code Coverage
+#       run: docker-compose run app <code_coverage_command>
+# 
+# container_scan:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Pushing to Registry
+#       run: docker-compose push
+# 
+#     - name: Container Scan
+#       run: docker scan --severity <scan_severity> <image_name>
+# 
+# deploy:
+#   runs-on: ubuntu-latest
+# 
+#   steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+# 
+#     - name: Deployment
+#       run: docker-compose up -d
