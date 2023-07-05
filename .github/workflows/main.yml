@@ -47,7 +47,7 @@ jobs:
           
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
       - name: Unit Testing
-        run: python test.py
+        run: python tests/test.py
   
   
 # integration_test:
