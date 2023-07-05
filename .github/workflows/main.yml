@@ -30,23 +30,22 @@ jobs:
       - name: Building
         run: docker-compose build 
 
-  integration_test:
+  Unit_test:
    runs-on: ubuntu-latest
  
    steps:
      - name: Checkout code
        uses: actions/checkout@v2
  
-     - name: Power up the Infra
-       run: docker-compose up -d
+
      - name: Set up Python 3.7
        uses: actions/setup-python@v2
        with:
          python-version: 3.7
-     - name: Install integration testing requirements
+     - name: Install unit testing requirements
        run: pip install "tornado" "redis"
      
-     - name: Integration Testing
+     - name: Unit Testing
        run: |
         export $(cat .env | xargs)
         python3 -c "from hello import MainHandler; exec(open('tests/test.py').read())"
