@@ -40,14 +40,13 @@ jobs:
   
       - name: Install unit testing requirements
         run: pip install "tornado" "redis"
-      - name: Import hello module
-        run: |
+      - name: Unit Testing
+        run: | 
           mkdir -p $HOME/workdir
           cp hello.py  $HOME/workdir/tests
-          
+        
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
-      - name: Unit Testing
-        run: python tests/test.py
+          python tests/test.py
   
   
 # integration_test:
