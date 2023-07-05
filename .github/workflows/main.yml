@@ -45,10 +45,11 @@ jobs:
          python-version: 3.7
      - name: Install unit testing requirements
        run: pip install "tornado" "redis"
-     - name: Export environment variables
-       run: export $(cat .env | xargs)
+     
      - name: Integration Testing
-       run: python3 -c "from hello import MainHandler; tests/test.py"  
+       run: |
+        export $(cat .env | xargs)
+        python3 -c "from hello import MainHandler; tests/test.py"  
 
 # code_coverage:
 #   runs-on: ubuntu-latest
