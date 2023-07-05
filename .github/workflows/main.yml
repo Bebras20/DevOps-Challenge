@@ -9,12 +9,12 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Linting
-      run: docker run --rm -v $PWD:/app -w /app docker.io/pycqa/pylint pylint .
+      - name: Linting
+        run: docker run --rm -v $PWD:/app -w /app docker.io/pycqa/pylint pylint .
 
 # Uncomment and customize the following sections as needed
 
