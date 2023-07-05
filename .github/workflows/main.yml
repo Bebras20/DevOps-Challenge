@@ -37,10 +37,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
   
-      - name: Unit Testing
+      - name: Install unit testing requirements
         run: pip install "tornado" "redis"
+      - name: Import hello module
+        run: |
+          mkdir -p $HOME/workdir
+          cp hello.py $HOME/workdir
+          echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
+  
       - name: Unit Testing
-        
         run: python tests/test.py
   
   
