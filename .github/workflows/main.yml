@@ -8,14 +8,27 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Linting
-        run: docker run --rm -v $PWD/hello.py:/app/hello.py -w /app docker.io/cytopia/pylint pylint hello.py
-
+      
+      - name: Pull pylint image
+        run: docker pull docker.io/cytopia/pylint
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Copy .pylintrc
+        run: cp .pylintrc $GITHUB_WORKSPACE/.pylintrc
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run pylint
+        run: pylint hello.py
 # Uncomment and customize the following sections as needed
 
 # build:
