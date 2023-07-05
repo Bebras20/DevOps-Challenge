@@ -7,22 +7,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    name: Checks
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - uses: actions/setup-python@v2
       with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-        find . -name '*.py' -exec pylint {} \;
+        python-version: 3.x
+    - run: pip install --upgrade pip
+    - run: pip install "black<23" pylint==v3.0.0a3 mypy==v0.902
+    - run: black --diff --check $(git ls-files '*.py')
+    - run: pylint --disable=all --enable=unused-import $(git ls-files '*.py')
+    - run: mypy --strict $(git ls-files '*.py')
 # Uncomment and customize the following sections as needed
 
 # build:
