@@ -47,7 +47,6 @@ jobs:
           
           echo "export PYTHONPATH=$HOME/workdir" >> $GITHUB_ENV
       - name: Unit Testing
-        working-directory: $HOME/workdir
         run: python -c "from hello import MainHandler; tests/test.py"  
   
 # integration_test:
