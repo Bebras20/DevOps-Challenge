@@ -38,6 +38,9 @@ jobs:
         uses: actions/checkout@v2
   
       - name: Unit Testing
+        run: pip install "tornado"
+      - name: Unit Testing
+        
         run: python tests/test.py
   
   
