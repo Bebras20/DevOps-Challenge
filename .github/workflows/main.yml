@@ -19,28 +19,28 @@ jobs:
     - run: black hello.py
 
     - run: pylint --disable=all --enable=unused-import $(git ls-files 'hello.py')
-# Uncomment and customize the following sections as needed
 
-# build:
-#   runs-on: ubuntu-latest
-# 
-#   steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-# 
-#     - name: Building
-#       run: docker-compose build
-# 
-# unit_test:
-#   runs-on: ubuntu-latest
-# 
-#   steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-# 
-#     - name: Unit Testing
-#       run: docker-compose run app <unit_test_command>
-# 
+  infra_build:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+  
+      - name: Building
+        run: docker-compose build
+  
+  unit_test:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+  
+      - name: Unit Testing
+        run: python tests/test.py
+  
+  
 # integration_test:
 #   runs-on: ubuntu-latest
 # 
